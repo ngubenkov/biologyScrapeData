@@ -2,17 +2,30 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
-import traceback
+from selenium.common.exceptions import TimeoutException, StaleElementReferenceException
+import threading
+import os
+import tarfile
 
 page_counter = 1
 
+def browser_setup():
+
+    chromeOptions = webdriver.ChromeOptions()
+    prefs = {"download.default_directory": "/Users/frozmannik/Desktop/data"}
+    chromeOptions.add_experimental_option("prefs", prefs)
+
+    browser = webdriver.Chrome(executable_path='/Users/frozmannik/PycharmProjects/biologyScrape/files/mac/chromedriver',
+                               chrome_options = chromeOptions)  # fake Chrome browser mac
+    # browser = webdriver.Chrome('C:\\Users\Frozm\PycharmProjects\\biologyScrapeData\\files\win\chromedriver.exe')
+    return browser
+
 def first_open_url(url):
-    #browser = webdriver.Chrome('/Users/frozmannik/PycharmProjects/biologyScrape/files/mac/chromedriver')  # fake Chrome browser mac
-    browser = webdriver.Chrome('C:\\Users\Frozm\PycharmProjects\\biologyScrapeData\\files\win\chromedriver.exe')
+    browser = browser_setup()
     browser.get(url)
     accept_terms(browser) #uncoment this
 
+    # save activity in file
     global page_counter
     f = open('links.txt', 'a')
     print('Page {}'.format(page_counter))
@@ -85,15 +98,77 @@ def open_url(browser, url):
     get_items(browser)
     open_next_page(browser)
 
+def file_to_list(file):
+    with open(file, "r") as fd:
+        lines = fd.read().splitlines()
+    return lines
+
+def download_from_links(links,firstInd, thread=1):
+    browser = browser_setup()
+    terms = True
+    for num, link in enumerate(links, start=firstInd):
+
+        browser.get(link)
+
+        if terms: # accept terms first time
+            try:
+                accept_terms(browser)
+                terms = False
+            except:
+                pass
+
+        try:
+            download_btn = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+            download_btn.click()
+
+        except TimeoutException:
+            browser.refresh()
+            download_btn = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+            download_btn.click()
+        except StaleElementReferenceException:
+            browser.refresh()
+            download_btn = WebDriverWait(browser, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+            download_btn.click()
+
+        print("Thread {}. File {} downloaded. Files left {}".format(thread, num, firstInd+len(links)-num))
+
+def downloading(list):
+    t = threading.Thread(target=download_from_links, args=(list[0: 400], 0, 1))
+    t1 = threading.Thread(target=download_from_links, args=(list[401: 800], 401, 2))
+    t2 = threading.Thread(target=download_from_links, args=(list[801:], 801, 3))
+    # t3 = threading.Thread(target=download_from_links, args=(list[801:], 801, 4))
+
+    t.start()
+    t1.start()
+    t2.start()
+    # t3.start()
+
+def unzip_files(list):
+    for file in list:
+        if (file.endswith("tar.gz")):
+            tar = tarfile.open(file, "r:gz")
+            tar.extractall(path='/Users/frozmannik/Desktop/data/extracted')
+            tar.close()
+        elif (file.endswith("tar")):
+            tar = tarfile.open(file, "r:")
+            tar.extractall(path='/Users/frozmannik/Desktop/data/extracted')
+            tar.close()
+
 if __name__ == '__main__':
     items_links = []
     url = 'https://portal.gdc.cancer.gov/repository?facetTab=files&files_size=100&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_category%22%2C%22value%22%3A%5B%22Transcriptome%20Profiling%22%5D%7D%7D%5D%7D&searchTableTab=files'
     #1url = "file:///Users/frozmannik/PycharmProjects/biologyScrape/files/Repository.htm"
     last_page = 'https://portal.gdc.cancer.gov/repository?facetTab=files&files_offset=2670&files_size=10&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_category%22%2C%22value%22%3A%5B%22Transcriptome%20Profiling%22%5D%7D%7D%5D%7D&searchTableTab=files'
-    first_open_url(url)
+    #first_open_url(url)
 
-    with open('lins_without_page.txt', 'w') as f:
-        for item in items_links:
-            f.write("{}\n".format(item))
+    # list = file_to_list('/Users/frozmannik/PycharmProjects/biologyScrape/lins_without_page.txt')
+
+    #print( len(os.listdir('/Users/frozmannik/Desktop/data')) )
+    os.chdir('/Users/frozmannik/Desktop/data')
+    unzip_files( os.listdir('/Users/frozmannik/Desktop/data') )
+
+
+
 
     print("end of execution")
