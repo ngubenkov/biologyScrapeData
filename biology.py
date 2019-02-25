@@ -92,8 +92,6 @@ def open_next_page(browser):
             break
     print("last element")
 
-
-
 def open_url(browser, url):
     browser.get(url)
     get_items(browser)
@@ -115,7 +113,6 @@ def download_from_links(links,firstInd, thread=1):
                 terms = False
             except:
                 pass
-
         try:
             download_btn = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
             download_btn.click()
@@ -153,6 +150,7 @@ def unzip_files(list):
             tar = tarfile.open(file, "r:")
             tar.extractall(path='/Users/frozmannik/Desktop/data/extracted')
             tar.close()
+    print("All files are unziped")
 
 def save_txt(folders, path):
     '''unzip files and save them in folder'''
@@ -161,14 +159,14 @@ def save_txt(folders, path):
             print("DS STORE")
         else:
             for file in os.listdir(folder):
-
                     if file.endswith(".gz"):
-                        print(folder + "/" +file)
                         i = i+1
                         content = gzip.open(folder + "/" +file)
                         data = content.read()
                         with open(os.path.join(path, file[:-3]), "wb") as f: # write bytes to file
                             f.write(data)
+
+    print("All files are saved in {}".format(path))
 
 if __name__ == '__main__':
     items_links = []
@@ -176,7 +174,6 @@ if __name__ == '__main__':
     #1url = "file:///Users/frozmannik/PycharmProjects/biologyScrape/files/Repository.htm"
     last_page = 'https://portal.gdc.cancer.gov/repository?facetTab=files&files_offset=2670&files_size=10&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_category%22%2C%22value%22%3A%5B%22Transcriptome%20Profiling%22%5D%7D%7D%5D%7D&searchTableTab=files'
     #first_open_url(url)
-
     # list = file_to_list('/Users/frozmannik/PycharmProjects/biologyScrape/lins_without_page.txt')
 
     # print( len(os.listdir('/Users/frozmannik/Desktop/data')) )
