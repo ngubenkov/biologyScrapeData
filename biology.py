@@ -129,7 +129,6 @@ def download_from_links(links,firstInd, thread=1):
             download_btn = WebDriverWait(browser, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
             download_btn.click()
-
         print("Thread {}. File {} downloaded. Files left {}".format(thread, num, firstInd+len(links)-num))
 
 def downloading(list):
@@ -144,6 +143,7 @@ def downloading(list):
     # t3.start()
 
 def unzip_files(list):
+    '''First unzipin'''
     for file in list:
         if (file.endswith("tar.gz")):
             tar = tarfile.open(file, "r:gz")
@@ -155,27 +155,20 @@ def unzip_files(list):
             tar.close()
 
 def save_txt(folders, path):
-    i=0
+    '''unzip files and save them in folder'''
     for folder in folders:
         if folder == '.DS_Store':
             print("DS STORE")
         else:
-            try:
-                for file in os.listdir(folder):
+            for file in os.listdir(folder):
 
-                        if file.endswith(".gz"):
-                            print(folder + "/" +file)
-                            i = i+1
-                            #with gzip.open(file, 'rb') as f:
-                              #  file_content = f.read()
-            except:
-                print("!!!!!!!!!#################    " + folder + "/" +file)
-
-    print(i)
-
-
-
-
+                    if file.endswith(".gz"):
+                        print(folder + "/" +file)
+                        i = i+1
+                        content = gzip.open(folder + "/" +file)
+                        data = content.read()
+                        with open(os.path.join(path, file[:-3]), "wb") as f: # write bytes to file
+                            f.write(data)
 
 if __name__ == '__main__':
     items_links = []
@@ -190,7 +183,7 @@ if __name__ == '__main__':
     os.chdir('/Users/frozmannik/Desktop/data/extracted')
     # unzip_files( os.listdir('/Users/frozmannik/Desktop/data') )
 
-    path = '/Users/frozmannik/Desktop/data/files'
+    path = '/Users/frozmannik/Desktop/data/extracted/files/'
     #print( os.listdir('/Users/frozmannik/Desktop/data/extracted'))
     save_txt(os.listdir('/Users/frozmannik/Desktop/data/extracted'), path)
 
