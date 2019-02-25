@@ -6,6 +6,7 @@ from selenium.common.exceptions import TimeoutException, StaleElementReferenceEx
 import threading
 import os
 import tarfile
+import gzip
 
 page_counter = 1
 
@@ -15,7 +16,7 @@ def browser_setup():
     prefs = {"download.default_directory": "/Users/frozmannik/Desktop/data"}
     chromeOptions.add_experimental_option("prefs", prefs)
 
-    browser = webdriver.Chrome(executable_path='/Users/frozmannik/PycharmProjects/biologyScrape/files/mac/chromedriver',
+    browser = webdriver.Chrome(executable_path = '/Users/frozmannik/PycharmProjects/biologyScrape/files/mac/chromedriver',
                                chrome_options = chromeOptions)  # fake Chrome browser mac
     # browser = webdriver.Chrome('C:\\Users\Frozm\PycharmProjects\\biologyScrapeData\\files\win\chromedriver.exe')
     return browser
@@ -107,9 +108,7 @@ def download_from_links(links,firstInd, thread=1):
     browser = browser_setup()
     terms = True
     for num, link in enumerate(links, start=firstInd):
-
         browser.get(link)
-
         if terms: # accept terms first time
             try:
                 accept_terms(browser)
@@ -155,6 +154,29 @@ def unzip_files(list):
             tar.extractall(path='/Users/frozmannik/Desktop/data/extracted')
             tar.close()
 
+def save_txt(folders, path):
+    i=0
+    for folder in folders:
+        if folder == '.DS_Store':
+            print("DS STORE")
+        else:
+            try:
+                for file in os.listdir(folder):
+
+                        if file.endswith(".gz"):
+                            print(folder + "/" +file)
+                            i = i+1
+                            #with gzip.open(file, 'rb') as f:
+                              #  file_content = f.read()
+            except:
+                print("!!!!!!!!!#################    " + folder + "/" +file)
+
+    print(i)
+
+
+
+
+
 if __name__ == '__main__':
     items_links = []
     url = 'https://portal.gdc.cancer.gov/repository?facetTab=files&files_size=100&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_category%22%2C%22value%22%3A%5B%22Transcriptome%20Profiling%22%5D%7D%7D%5D%7D&searchTableTab=files'
@@ -164,11 +186,12 @@ if __name__ == '__main__':
 
     # list = file_to_list('/Users/frozmannik/PycharmProjects/biologyScrape/lins_without_page.txt')
 
-    #print( len(os.listdir('/Users/frozmannik/Desktop/data')) )
-    os.chdir('/Users/frozmannik/Desktop/data')
-    unzip_files( os.listdir('/Users/frozmannik/Desktop/data') )
+    # print( len(os.listdir('/Users/frozmannik/Desktop/data')) )
+    os.chdir('/Users/frozmannik/Desktop/data/extracted')
+    # unzip_files( os.listdir('/Users/frozmannik/Desktop/data') )
 
-
-
+    path = '/Users/frozmannik/Desktop/data/files'
+    #print( os.listdir('/Users/frozmannik/Desktop/data/extracted'))
+    save_txt(os.listdir('/Users/frozmannik/Desktop/data/extracted'), path)
 
     print("end of execution")

@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a87c3010-f9db-4666-9d45-923a8ef9ef56" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_02_2019__2_38_PM__Default_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/biologyScrape.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/biologyScrape.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biology.py" beforeDir="false" afterPath="$PROJECT_DIR$/biology.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/mac/chromedriver" beforeDir="false" afterPath="$PROJECT_DIR$/files/mac/chromedriver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lins_without_page.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lins_without_page.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,11 +16,10 @@
       <file leaf-file-name="biology.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/biology.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="154" column="73" selection-start-line="154" selection-start-column="73" selection-end-line="154" selection-end-column="73" />
+            <state relative-caret-position="260">
+              <caret line="163" column="47" lean-forward="true" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-                <element signature="e#2287#3184#0" />
               </folding>
             </state>
           </provider>
@@ -335,7 +328,6 @@
           <caret line="58" column="106" lean-forward="true" selection-start-line="58" selection-start-column="106" selection-end-line="58" selection-end-column="106" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#2287#3184#0" />
           </folding>
         </state>
       </provider>
@@ -360,11 +352,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/biology.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="154" column="73" selection-start-line="154" selection-start-column="73" selection-end-line="154" selection-end-column="73" />
+        <state relative-caret-position="260">
+          <caret line="163" column="47" lean-forward="true" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#2287#3184#0" />
           </folding>
         </state>
       </provider>
