@@ -7,13 +7,14 @@ import threading
 import os
 import tarfile
 import gzip
+import datetime
 
 page_counter = 1
 
 def browser_setup():
 
     chromeOptions = webdriver.ChromeOptions()
-    prefs = {"download.default_directory": "/Users/frozmannik/Desktop/data"}
+    prefs = {"download.default_directory": "/Users/frozmannik/Desktop/LUAD data"}
     chromeOptions.add_experimental_option("prefs", prefs)
 
     browser = webdriver.Chrome(executable_path = '/Users/frozmannik/PycharmProjects/biologyScrape/files/mac/chromedriver',
@@ -32,7 +33,6 @@ def first_open_url(url):
     print('Page {}'.format(page_counter))
     f.write('Page {}'.format(page_counter) + '\n')
     f.close()
-    page_counter = page_counter + 1
 
     get_items(browser)
     open_next_page(browser)
@@ -76,8 +76,8 @@ def open_next_page(browser):
             for btn in buttons:
                 if btn.find_element_by_tag_name("button").get_attribute("innerHTML") == '›':
                         global page_counter
-                        print('Page {}'.format(page_counter))
                         page_counter = page_counter + 1
+                        print('Page {}'.format(page_counter))
                         f = open('links.txt','a')
                         f.write('Page {}'.format(page_counter)+ '\n')
                         f.close()
@@ -114,45 +114,92 @@ def download_from_links(links,firstInd, thread=1):
             except:
                 pass
         try:
-            download_btn = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+            download_btn = WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
             download_btn.click()
 
         except TimeoutException:
-            browser.refresh()
-            download_btn = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
-            download_btn.click()
+            try:
+                print("Thread {}. TimeoutException 1 for file {} ".format(thread, num))
+                browser.refresh()
+                download_btn = WebDriverWait(browser, 30).until(EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+                download_btn.click()
+            except TimeoutException:
+                try:
+                    print("Thread {}. TimeoutException 2 for file {} ".format(thread, num))
+                    browser.refresh()
+                    download_btn = WebDriverWait(browser, 30).until(
+                        EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+                    download_btn.click()
+                except TimeoutException:
+                    try:
+                        print("Thread {}. TimeoutException 3 for file {} ".format(thread, num))
+                        browser.refresh()
+                        download_btn = WebDriverWait(browser, 40).until(
+                            EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+                        download_btn.click()
+                    except TimeoutException:
+                        try:
+                            print("Thread {}. TimeoutException 4 for file {} ".format(thread, num))
+                            browser.refresh()
+                            download_btn = WebDriverWait(browser, 40).until(
+                                EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+                            download_btn.click()
+                        except TimeoutException:
+                            print("Thread {}. TimeoutException 5 for file {} ".format(thread, num))
+                            browser.refresh()
+                            download_btn = WebDriverWait(browser, 50).until(
+                                EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+                            download_btn.click()
+            except StaleElementReferenceException:
+                print("Thread {}. StaleElementReferenceException for file {} ".format(thread, num))
+                browser.refresh()
+                download_btn = WebDriverWait(browser, 20).until(
+                    EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+                download_btn.click()
         except StaleElementReferenceException:
+            print("Thread {}. StaleElementReferenceException for file {} ".format(thread, num))
             browser.refresh()
-            download_btn = WebDriverWait(browser, 10).until(
+            download_btn = WebDriverWait(browser, 20).until(
                 EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
             download_btn.click()
+        except Exception as e:
+            print("Thread {}. Common exception for file {} ".format(thread, num))
+            browser.refresh()
+            download_btn = WebDriverWait(browser, 20).until(
+                EC.presence_of_element_located((By.CLASS_NAME, 'test-download-button')))
+            download_btn.click()
+
         print("Thread {}. File {} downloaded. Files left {}".format(thread, num, firstInd+len(links)-num))
 
+
+
+
 def downloading(list):
-    t = threading.Thread(target=download_from_links, args=(list[0: 400], 0, 1))
-    t1 = threading.Thread(target=download_from_links, args=(list[401: 800], 401, 2))
-    t2 = threading.Thread(target=download_from_links, args=(list[801:], 801, 3))
-    # t3 = threading.Thread(target=download_from_links, args=(list[801:], 801, 4))
+    t = threading.Thread(target=download_from_links, args=(list[0: 396], 0, 1))
+    t1 = threading.Thread(target=download_from_links, args=(list[397: 793], 397, 2))
+    t2 = threading.Thread(target=download_from_links, args=(list[793:], 793, 3))
+    #t3 = threading.Thread(target=download_from_links, args=(list[894:], 894, 4))
 
     t.start()
     t1.start()
     t2.start()
-    # t3.start()
+    #t3.start()
 
 def unzip_files(list):
     '''First unzipin'''
     for file in list:
         if (file.endswith("tar.gz")):
             tar = tarfile.open(file, "r:gz")
-            tar.extractall(path='/Users/frozmannik/Desktop/data/extracted')
+            tar.extractall(path='/Users/frozmannik/Desktop/LUAD data/extracted')
             tar.close()
         elif (file.endswith("tar")):
             tar = tarfile.open(file, "r:")
-            tar.extractall(path='/Users/frozmannik/Desktop/data/extracted')
+            tar.extractall(path='/Users/frozmannik/Desktop/LUAD data/extracted')
             tar.close()
     print("All files are unziped")
 
 def save_txt(folders, path):
+    '''second unzip'''
     '''unzip files and save them in folder'''
     for folder in folders:
         if folder == '.DS_Store':
@@ -160,28 +207,37 @@ def save_txt(folders, path):
         else:
             for file in os.listdir(folder):
                     if file.endswith(".gz"):
-                        i = i+1
+                        #i = i+1
                         content = gzip.open(folder + "/" +file)
                         data = content.read()
                         with open(os.path.join(path, file[:-3]), "wb") as f: # write bytes to file
                             f.write(data)
-
     print("All files are saved in {}".format(path))
+
+def save_links_without_page(list):
+    with open('links_without_page.txt', 'w') as f:
+        for item in list:
+            f.write("%s\n" % item)
 
 if __name__ == '__main__':
     items_links = []
-    url = 'https://portal.gdc.cancer.gov/repository?facetTab=files&files_size=100&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_category%22%2C%22value%22%3A%5B%22Transcriptome%20Profiling%22%5D%7D%7D%5D%7D&searchTableTab=files'
-    #1url = "file:///Users/frozmannik/PycharmProjects/biologyScrape/files/Repository.htm"
-    last_page = 'https://portal.gdc.cancer.gov/repository?facetTab=files&files_offset=2670&files_size=10&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUSC%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_category%22%2C%22value%22%3A%5B%22Transcriptome%20Profiling%22%5D%7D%7D%5D%7D&searchTableTab=files'
-    #first_open_url(url)
-    # list = file_to_list('/Users/frozmannik/PycharmProjects/biologyScrape/lins_without_page.txt')
 
+    list = file_to_list('/Users/frozmannik/PycharmProjects/biologyScrape/links_without_page.txt')
     # print( len(os.listdir('/Users/frozmannik/Desktop/data')) )
-    os.chdir('/Users/frozmannik/Desktop/data/extracted')
-    # unzip_files( os.listdir('/Users/frozmannik/Desktop/data') )
 
-    path = '/Users/frozmannik/Desktop/data/extracted/files/'
+    urlLUSC = 'https://portal.gdc.cancer.gov/query?files_size=100&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUAD%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_category%22%2C%22value%22%3A%5B%22Transcriptome%20Profiling%22%5D%7D%7D%5D%7D%5D%7D&query=cases.project.project_id%20in%20%5BTCGA-LUAD%5D%20and%20files.data_category%20in%20%5B%22Transcriptome%20Profiling%22%5D%20&searchTableTab=files'
+    urlLUSCLast = 'https://portal.gdc.cancer.gov/query?files_offset=2800&files_size=100&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUAD%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_category%22%2C%22value%22%3A%5B%22Transcriptome%20Profiling%22%5D%7D%7D%5D%7D%5D%7D&query=cases.project.project_id%20in%20%5BTCGA-LUAD%5D%20and%20files.data_category%20in%20%5B%22Transcriptome%20Profiling%22%5D%20&searchTableTab=files'
+    #first_open_url(urlLUSC)
+    os.chdir('/Users/frozmannik/Desktop/LUAD data/extracted')
+    #unzip_files(os.listdir('/Users/frozmannik/Desktop/LUAD data'))
+    path = '/Users/frozmannik/Desktop/LUAD data/extracted/files'
+    #downloading(list)
     #print( os.listdir('/Users/frozmannik/Desktop/data/extracted'))
-    save_txt(os.listdir('/Users/frozmannik/Desktop/data/extracted'), path)
+    save_txt(os.listdir('/Users/frozmannik/Desktop/LUAD data/extracted'), path)
+   # save_links_without_page(items_links)
 
+    #print(len(os.listdir('/Users/frozmannik/Desktop/LUAD data')))
     print("end of execution")
+    print(os.listdir('/Users/frozmannik/Desktop/LUAD data'))
+
+
