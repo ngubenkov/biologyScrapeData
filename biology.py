@@ -61,7 +61,7 @@ def get_items(browser): # get links of all files
                 f.write(line.find_elements_by_tag_name("td")[2].find_element_by_tag_name("a").get_attribute("href") + '\n')
                 f.close()
 
-                f = open('links_without_page.txt', 'a')
+                f = open('lusc links.txt', 'a')
                 f.write(line.find_elements_by_tag_name("td")[2].find_element_by_tag_name("a").get_attribute("href") + '\n')
                 f.close()
 
@@ -281,7 +281,7 @@ def save_txt(folders, path):
     print("All files are saved in {}".format(path))
 
 def save_links_without_page(list):
-    with open('links_without_page.txt', 'w') as f:
+    with open('lusc links.txt', 'w') as f:
         for item in list:
             f.write("%s\n" % item)
 
@@ -295,7 +295,7 @@ if __name__ == '__main__':
     urlLUAD = 'https://portal.gdc.cancer.gov/query?files_size=100&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22cases.project.project_id%22%2C%22value%22%3A%5B%22TCGA-LUAD%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22files.data_category%22%2C%22value%22%3A%5B%22Transcriptome%20Profiling%22%5D%7D%7D%5D%7D%5D%7D&query=cases.project.project_id%20in%20%5BTCGA-LUAD%5D%20and%20files.data_category%20in%20%5B%22Transcriptome%20Profiling%22%5D%20&searchTableTab=files'
 
     #first_open_url(urlLUSC)
-    #links = file_to_list('/Users/frozmannik/PycharmProjects/biologyScrape/links_without_page.txt')
+    #links = file_to_list('/Users/frozmannik/PycharmProjects/biologyScrape/lusc links.txt')
 
     files = file_to_list("/Users/frozmannik/PycharmProjects/biologyScrape/mergedLUSC.txt")
    # parallelAssigning(links)

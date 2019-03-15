@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a87c3010-f9db-4666-9d45-923a8ef9ef56" name="Default" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/luad links.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mergedLUSC.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/biology.py" beforeDir="false" afterPath="$PROJECT_DIR$/biology.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/links.txt" beforeDir="false" afterPath="$PROJECT_DIR$/links.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/links_without_page.txt" beforeDir="false" afterPath="$PROJECT_DIR$/links_without_page.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/links_without_page.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lusc links.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,26 +19,26 @@
       <file leaf-file-name="biology.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/biology.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-                <element signature="e#399#928#0" />
-                <element signature="e#3873#7557#0" />
-                <element signature="e#7813#9909#0" />
-                <element signature="e#9950#10247#0" />
-                <element signature="e#8002#8451#0" />
-                <element signature="e#8486#9080#0" />
-              </folding>
+            <state relative-caret-position="-4347">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mergedLUAD.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mergedLUAD.txt">
+      <file leaf-file-name="lusc links.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lusc links.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="137" column="25" selection-start-line="137" selection-start-column="25" selection-end-line="137" selection-end-column="25" />
+            <state relative-caret-position="175">
+              <caret line="1073" column="72" lean-forward="true" selection-start-line="1073" selection-start-column="72" selection-end-line="1073" selection-end-column="72" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mergedLUSC.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mergedLUSC.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="126" column="52" lean-forward="true" selection-start-line="126" selection-start-column="52" selection-end-line="126" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -65,7 +62,14 @@
       <find>TCGA-44-2668-01A-01R-A278-07</find>
       <find>db0ce49b-0048-4ba2-9295-309d8c570bb4.FPKM</find>
       <find>TCGA-85-8584-01A-11R-2403-07</find>
+      <find>97cabc84-779b-4a98-9518-93ba4523db4a</find>
+      <find>c897eb81-97e5-4007-9d85-66aa2c565f0e.FPKM</find>
+      <find>FPKM-UQ</find>
       <find>TCGA-05-4244-01A-01R-1107-07</find>
+      <find>TCGA-60-2712</find>
+      <find>TCGA-22-1017</find>
+      <find>33-6737</find>
+      <find>TCGA-33-6737</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -90,10 +94,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="y" value="39" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="810" />
+    <option name="height" value="807" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -184,17 +188,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="39" width="1440" height="810" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="807" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28118393" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.39270687" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32957748" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39270687" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32867134" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32678822" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32676056" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -203,26 +208,25 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19027483" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28484848" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32957748" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -240,17 +244,22 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/biology.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4650">
+          <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mergedLUAD.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2055">
+          <caret line="137" column="25" selection-start-line="137" selection-start-column="25" selection-end-line="137" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biology.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3315">
           <caret line="221" column="26" lean-forward="true" selection-start-line="221" selection-start-column="26" selection-end-line="221" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#399#928#0" />
-            <element signature="e#3873#7557#0" />
-            <element signature="e#7813#9909#0" />
-            <element signature="e#9950#10247#0" />
-            <element signature="e#8002#8451#0" />
-            <element signature="e#8486#9080#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -258,15 +267,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2640">
           <caret line="176" column="41" selection-start-line="176" selection-start-column="41" selection-end-line="176" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#399#928#0" />
-            <element signature="e#3873#7557#0" />
-            <element signature="e#7813#9909#0" />
-            <element signature="e#9950#10247#0" />
-            <element signature="e#8002#8451#0" />
-            <element signature="e#8486#9080#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -279,15 +279,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="58" column="106" lean-forward="true" selection-start-line="58" selection-start-column="106" selection-end-line="58" selection-end-column="106" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#399#928#0" />
-            <element signature="e#3873#7557#0" />
-            <element signature="e#7813#9909#0" />
-            <element signature="e#9950#10247#0" />
-            <element signature="e#8002#8451#0" />
-            <element signature="e#8486#9080#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -303,18 +294,6 @@
           <caret line="79" selection-start-line="79" selection-end-line="79" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/links.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fileWithEntityID.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirement.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geckodriver.log">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/fileWithEntityID1.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -337,47 +316,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/links_without_page.txt">
+    <entry file="file://$PROJECT_DIR$/mergedLUAD.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="1101" column="72" selection-start-line="1101" selection-start-column="72" selection-end-line="1101" selection-end-column="72" />
+        <state relative-caret-position="219">
+          <caret line="1049" column="44" selection-start-line="1049" selection-start-column="37" selection-end-line="1049" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/luad links.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="1167" column="72" lean-forward="true" selection-start-line="1167" selection-end-line="1167" selection-end-column="72" />
+        <state relative-caret-position="561">
+          <caret line="1047" selection-start-line="1047" selection-end-line="1047" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lusc links.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="1073" column="72" lean-forward="true" selection-start-line="1073" selection-start-column="72" selection-end-line="1073" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mergedLUSC.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="989" column="80" selection-start-line="989" selection-start-column="52" selection-end-line="989" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mergedLUAD.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="137" column="25" selection-start-line="137" selection-start-column="25" selection-end-line="137" selection-end-column="25" />
+        <state relative-caret-position="219">
+          <caret line="126" column="52" lean-forward="true" selection-start-line="126" selection-start-column="52" selection-end-line="126" selection-end-column="80" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/biology.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#399#928#0" />
-            <element signature="e#3873#7557#0" />
-            <element signature="e#7813#9909#0" />
-            <element signature="e#9950#10247#0" />
-            <element signature="e#8002#8451#0" />
-            <element signature="e#8486#9080#0" />
-          </folding>
+        <state relative-caret-position="-4347">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="13" />
         </state>
       </provider>
     </entry>
